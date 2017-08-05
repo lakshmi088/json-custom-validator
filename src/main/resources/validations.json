@@ -1,0 +1,190 @@
+{
+  "notnull": {
+    "name": "Name is required!",
+    "content.offerStartDate": "Offer Start Date is required!",
+    "content.offerEndDate": "Offer End Date is required!",
+    "publishingStartDate": "Publishing Start Date is required!",
+    "publishingEndDate": "Publishing End Date is required!",
+    "content.offers[0].headLine": "Headline is required!"
+  },
+  "functional": {
+    "evergreen": [
+      {
+        "condition": "equals",
+        "value": false,
+        "failureMessage": "Evergreen coupons are not supported yet."
+      }
+    ],
+    "content.redeemingChannel": [
+      {
+        "condition": "enum",
+        "enumeration": [
+          "all",
+          "online",
+          "instore"
+        ],
+        "failureMessage": "Redeeming Channels should be one of [all, online, instore] values!"
+      }
+    ],
+    "content.offerStartDate": [
+      {
+        "condition": "dateFormat",
+        "format": "yyyy-MM-dd'T'HH:mm:ssXXX",
+        "failureMessage": "Offer Start Date is not in the format 1900-01-01T10:10:10-05:00!"
+      },
+      {
+        "condition": "lessThan",
+        "compareWith": "content.offerEndDate",
+        "failureMessage": "Offer Start Date should be less than Offer End Date!"
+      }
+    ],
+    "publishingStartDate": [
+      {
+        "condition": "lessThan",
+        "compareWith": "content.offerEndDate",
+        "failureMessage": "Publishing Start Date should be less than Offer End Date!"
+      }
+    ],
+    "content.offerEndDate": [
+      {
+        "condition": "dateFormat",
+        "format": "yyyy-MM-dd'T'HH:mm:ssXXX",
+        "failureMessage": "Offer End Date is not in the format 1900-01-01T10:10:10-05:00!"
+      },
+      {
+        "condition": "greaterThan",
+        "compareWith": "content.offerStartDate",
+        "failureMessage": "Offer End Date should be greater than Offer Start Date!"
+      }
+    ],
+    "publishingEndDate": [
+      {
+        "condition": "greaterThan",
+        "compareWith": "content.offerStartDate",
+        "failureMessage": "Publishing End Date should be greater than Offer Start Date!"
+      },
+      {
+        "condition": "greaterThan",
+        "compareWith": "publishingStartDate",
+        "failureMessage": "Publishing End Date should be greater than Publishing Start Date!"
+      }
+    ],
+    "content.offers[0].headLine": [
+      {
+        "depends": "content.offers[0].conjunction",
+        "condition": "null",
+        "failureMessage": "Coupon Option not required for Tier#1!"
+      }
+    ],
+    "content.offers[1]._classType": [
+      {
+        "depends": "content.offers[1].headLine",
+        "condition": "notnull",
+        "failureMessage": "When Tier#2 is opted, its Headline is required!"
+      },
+      {
+        "depends": "content.offers[1].conjunction",
+        "condition": "notnull",
+        "failureMessage": "When Tier#2 is opted, its Coupon Option is required!"
+      },
+      {
+        "depends": "content.offers[1].conjunction",
+        "condition": "enum",
+        "enumeration": [
+          "PLUS",
+          "OR",
+          "AND"
+        ],
+        "failureMessage": "When Tier#2 is opted, its Coupon Option should be one of [PLUS, OR, AND] values!"
+      }
+    ],
+    "content.offers[2]._classType": [
+      {
+        "depends": "content.offers[2].headLine",
+        "condition": "notnull",
+        "failureMessage": "When Tier#3 is opted, its Headline is required!"
+      },
+      {
+        "depends": "content.offers[2].conjunction",
+        "condition": "notnull",
+        "failureMessage": "When Tier#3 is opted, its Coupon Option is required!"
+      },
+      {
+        "depends": "content.offers[2].conjunction",
+        "condition": "enum",
+        "enumeration": [
+          "PLUS",
+          "OR",
+          "AND"
+        ],
+        "failureMessage": "When Tier#3 is opted, its Coupon Option should be one of [PLUS, OR, AND] values!"
+      }
+    ],
+    "content.offers[3]._classType": [
+      {
+        "depends": "content.offers[3].headLine",
+        "condition": "notnull",
+        "failureMessage": "When Tier#4 is opted, its Headline is required!"
+      },
+      {
+        "depends": "content.offers[3].conjunction",
+        "condition": "notnull",
+        "failureMessage": "When Tier#4 is opted, its Coupon Option is required!"
+      },
+      {
+        "depends": "content.offers[3].conjunction",
+        "condition": "enum",
+        "enumeration": [
+          "PLUS",
+          "OR",
+          "AND"
+        ],
+        "failureMessage": "When Tier#4 is opted, its Coupon Option should be one of [PLUS, OR, AND] values!"
+      }
+    ],
+    "content.offers[4]._classType": [
+      {
+        "depends": "content.offers[4].headLine",
+        "condition": "notnull",
+        "failureMessage": "When Tier#5 is opted, its Headline is required!"
+      },
+      {
+        "depends": "content.offers[4].conjunction",
+        "condition": "notnull",
+        "failureMessage": "When Tier#5 is opted, its Coupon Option is required!"
+      },
+      {
+        "depends": "content.offers[4].conjunction",
+        "condition": "enum",
+        "enumeration": [
+          "PLUS",
+          "OR",
+          "AND"
+        ],
+        "failureMessage": "When Tier#5 is opted, its Coupon Option should be one of [PLUS, OR, AND] values!"
+      }
+    ],
+    "content.offers[5]._classType": [
+      {
+        "depends": "content.offers[5].headLine",
+        "condition": "notnull",
+        "failureMessage": "When Tier#6 is opted, its Headline is required!"
+      },
+      {
+        "depends": "content.offers[5].conjunction",
+        "condition": "notnull",
+        "failureMessage": "When Tier#6 is opted, its Coupon Option is required!"
+      },
+      {
+        "depends": "content.offers[5].conjunction",
+        "condition": "enum",
+        "enumeration": [
+          "PLUS",
+          "OR",
+          "AND"
+        ],
+        "failureMessage": "When Tier#6 is opted, its Coupon Option should be one of [PLUS, OR, AND] values!"
+      }
+    ]
+  }
+}

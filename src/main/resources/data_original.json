@@ -1,0 +1,37 @@
+{
+    "name": "06.25_SALEDAY7_06.27-copy",
+    "contentType": "couponTile",
+    "priority": 10,
+    "displayName": "06.25_SALEDAY7_06.27-copy",
+    "validated": true,
+    "parent": "/content/en_US/JCPenney.com/Coupons/Assets/Content",
+    "active": true,
+    "publishingStartDate": "2017-06-25T00:00:00-05:00",
+    "publishingEndDate": "2017-08-31T23:59:59-05:00",
+    "publishingChannelLarge": true,
+    "publishingChannelSmall": true,
+    "publishingChannelApp": true,
+    "content": {
+        "offerStartDate": "2017-06-25T00:00:00-05:00",
+        "redeemingChannel": "online",
+        "linkText": "SHOP SALES",
+        "disclaimerTemplate": "TEST OFFER DATE  @offerStartDate - @offerEndDate  TEST OFFER DATE",
+        "linkUrl": "http://www.jcpenney.com/g/sales-deals/N-1b0cnoo?pageType=X2H2&cm_re=CPN-_-0614-_-SALEDAY7-OL_SS",
+        "promoCode": "SALEDAY7",
+        "offerEndDate": "2017-08-31T23:59:59-05:00",
+        "disclaimer": "TEST OFFER DATE  06-25-2017 12:00AM - 08-31-2017 11:59PM  TEST OFFER DATE",
+        "offers": [
+            {
+                "bodyCopy": "select apparel, shoes, accessories, fine jewelry & home",
+                "headLine": "EXTRA 30% OFF $300+"
+            },
+            {
+                "headLine": "EXTRA 20% OFF $200+"
+            },
+            {
+                "conjunction": "+",
+                "headLine": "EXTRA 10% OFF $100+"
+            }
+        ]
+    }
+}
