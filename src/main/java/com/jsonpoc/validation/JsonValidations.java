@@ -62,8 +62,27 @@ public class JsonValidations {
         }
     }
 
+    public void buildPath() {
+        Configuration conf;
+        List<String> pathList;
+        DocumentContext documentContext;
+        JsonNode validationsNode;
+        try {
+            conf = Configuration.builder().options(Option.AS_PATH_LIST).build();
+            documentContext = using(conf).parse(this.jsonSchemaString);
+            pathList = documentContext.read("$.." + validationsProperty);
+
+            for (String path : pathList) {
+                validationsNode = this.mapper.readTree(JsonPath.read(this.jsonSchemaString, path).toString());
+                originalPaths.put(path, validationsNode);
+            }
+            System.out.println(originalPaths);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public Object validate(String jsonDataString) {
-        System.out.println(jsonDataString);
         return null;
     }
 }
