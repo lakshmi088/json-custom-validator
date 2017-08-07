@@ -16,22 +16,22 @@
                 "linkText": {
                     "type": "string"
                 },
-                "linkUrl": {                   
+                "linkUrl": {
                     "type": "string"
                 },
-                "offerEndDate": {                    
+                "offerEndDate": {
                     "type": "string"
                 },
-                "offerStartDate": {                    
+                "offerStartDate": {
                     "type": "string"
                 },
-                "offers": {                    
-                    "items": {                        
+                "offers": {
+                    "items": {
                         "properties": {
-                            "bodyCopy": {                                
+                            "bodyCopy": {
                                 "type": "string"
                             },
-                            "headLine": {                                
+                            "headLine": {
                                 "type": "string"
                             }
                         },
@@ -41,12 +41,12 @@
                 },
                 "promoCode": {
                     "type": "string",
-					"enum": [
-						"SALEDAY"
-					],
-					"enumErrorCode": "Not valid!"
+                    "enum": [
+                        "SALEDAY"
+                    ],
+                    "enumErrorCode": "Not valid!"
                 },
-                "redeemingChannel": {                   
+                "redeemingChannel": {
                     "type": "string"
                 }
             },
@@ -70,16 +70,16 @@
         "publishingChannelApp": {
             "type": "boolean"
         },
-        "publishingChannelLarge": {            
+        "publishingChannelLarge": {
             "type": "boolean"
         },
-        "publishingChannelSmall": {           
+        "publishingChannelSmall": {
             "type": "boolean"
         },
-        "publishingEndDate": {            
+        "publishingEndDate": {
             "type": "string"
         },
-        "publishingStartDate": {         
+        "publishingStartDate": {
             "type": "string"
         },
         "validated": {
@@ -87,5 +87,5 @@
         }
     },
     "type": "object",
-	"required": ["validated"]
+    "required": ["validated"]
 }

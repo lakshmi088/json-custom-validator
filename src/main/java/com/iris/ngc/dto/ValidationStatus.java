@@ -1,4 +1,4 @@
-package com.jsonpoc.dto;
+package com.iris.ngc.dto;
 
 public class ValidationStatus {
 
