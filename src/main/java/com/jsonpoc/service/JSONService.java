@@ -6,7 +6,6 @@ import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import java.io.File;
 import java.io.FileInputStream;
-import java.net.URL;
 
 public class JSONService {
 
