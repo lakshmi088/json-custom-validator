@@ -170,12 +170,13 @@ public class JsonValidations {
                 .options(Option.DEFAULT_PATH_LEAF_TO_NULL).build();
         DocumentContext dataCtxt = using(conf).parse(jsonDataString);
         Set<CustomValidationMessage> errors = new HashSet();
-        String dataPath;
+        String dataPath, value;
         for (Map.Entry<String, List<JsonCustomValidator>> validators : validators.entrySet()) {
             dataPath = validators.getKey();
             if ("object".equalsIgnoreCase(this.parentSchemaTypes.get(dataPath))) {
                 for (JsonCustomValidator validator : validators.getValue()) {
-                    errors.addAll(validator.validate(dataCtxt.read(dataPath).toString(), dataCtxt, dataPath));
+                    value = dataCtxt.read(dataPath);
+                    errors.addAll(validator.validate(value, dataCtxt, dataPath));
                 }
             } else {
                 //TODO for array
