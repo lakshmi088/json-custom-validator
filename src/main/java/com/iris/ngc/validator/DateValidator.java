@@ -1,6 +1,6 @@
 package com.iris.ngc.validator;
 
-import com.iris.ngc.util.AppliationConstants;
+import com.iris.ngc.util.AppliationUtil;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +29,7 @@ public class DateValidator {
         if (start == null || end == null) {
             return false;
         }
-        SimpleDateFormat sdf = new SimpleDateFormat(AppliationConstants.DEFAULTDATEFORMAT);
+        SimpleDateFormat sdf = new SimpleDateFormat(AppliationUtil.DEFAULTDATEFORMAT);
         sdf.setLenient(false);
         try {
             startDate = sdf.parse(start);

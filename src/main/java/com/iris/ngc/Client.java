@@ -12,9 +12,9 @@ public class Client {
         System.out.println(System.getProperty("user.dir"));
         ValidateComponent validateComponent = new ValidateComponent();
         //Validating schema
-//        ValidationStatus validationScheamStatus = validateComponent.validateDataWithSchema(schemaFilePath, dataFilePath);
-//        System.out.println(validationScheamStatus);
-        ValidationStatus validationScheamStatus = validateComponent.validateDataWithSchemaValidations(schemaFilePath, dataFilePath);
+        ValidationStatus validationScheamStatus = validateComponent.validateDataWithSchema(schemaFilePath, dataFilePath);
         System.out.println(validationScheamStatus);
+//        ValidationStatus validationScheamStatus = validateComponent.validateDataWithSchemaValidations(schemaFilePath, dataFilePath);
+//        System.out.println(validationScheamStatus);
     }
 }
