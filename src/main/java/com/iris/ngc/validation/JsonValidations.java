@@ -18,6 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import static com.jayway.jsonpath.JsonPath.using;
+import com.jayway.jsonpath.PathNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import net.minidev.json.JSONArray;
@@ -71,8 +72,8 @@ public class JsonValidations {
                 this.buildValidationDeatils(path);
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (PathNotFoundException e) {
+//            e.printStackTrace();
         }
     }
 
@@ -182,7 +183,6 @@ public class JsonValidations {
                 //TODO for array
             }
         }
-        System.out.println(errors);
         return errors;
     }
 }
