@@ -1,0 +1,146 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "properties": {
+        "active": {
+            "type": "boolean"
+        },
+        "content": {
+            "properties": {
+                "disclaimer": {
+                    "type": "string"
+                },
+                "disclaimerTemplate": {
+                    "type": "string"
+                },
+                "linkText": {
+                    "type": "string"
+                },
+                "linkUrl": {
+                    "type": "string"
+                },
+                "offerEndDate": {
+                    "type": "string",
+                    "validations": [
+                        {
+                            "condition": "dateFormat",
+                            "format": "yyyy-MM-dd'T'HH:mm:ssXXX",
+                            "failureMessage": "Offer End Date is not in the format 1900-01-01T10:10:10-05:00!"
+                        },
+                        {
+                            "condition": "greaterThan",
+                            "compareWith": "content.offerStartDate",
+                            "failureMessage": "Offer End Date should be greater than Offer Start Date!"
+                        }
+                    ]
+                },
+                "offerStartDate": {
+                    "type": "string",
+                    "validations": [
+                        {
+                            "condition": "dateFormat",
+                            "format": "yyyy-MM-dd'T'HH:mm:ssXXX",
+                            "failureMessage": "Offer Start Date is not in the format 1900-01-01T10:10:10-05:00!"
+                        },
+                        {
+                            "condition": "lessThan",
+                            "compareWith": "content.offerEndDate",
+                            "failureMessage": "Offer Start Date should be less than Offer End Date!"
+                        }
+                    ]
+                },
+                "offers": {
+                    "items": {
+                        "properties": {
+                            "bodyCopy": {
+                                "type": "string"
+                            },
+                            "headLine": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object",
+                        "required": [
+                            "headLine"
+                        ]
+                    },
+                    "type": "array"
+                },
+                "promoCode": {
+                    "type": "string"
+                },
+                "redeemingChannel": {
+                    "type": "string",
+                    "enum": [
+                        "all",
+                        "online",
+                        "instore"
+                    ]
+                }
+            },
+            "type": "object",
+            "required": [
+                "offerStartDate",
+                "offerEndDate"
+            ]
+        },
+        "contentType": {
+            "type": "string"
+        },
+        "displayName": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "parent": {
+            "type": "string"
+        },
+        "priority": {
+            "type": "integer"
+        },
+        "publishingChannelApp": {
+            "type": "boolean"
+        },
+        "publishingChannelLarge": {
+            "type": "boolean"
+        },
+        "publishingChannelSmall": {
+            "type": "boolean"
+        },
+        "publishingEndDate": {
+            "type": "string",
+            "validations": [
+                {
+                    "condition": "greaterThan",
+                    "compareWith": "content.offerStartDate",
+                    "failureMessage": "Publishing End Date should be greater than Offer Start Date!"
+                },
+                {
+                    "condition": "greaterThan",
+                    "compareWith": "publishingStartDate",
+                    "failureMessage": "Publishing End Date should be greater than Publishing Start Date!"
+                }
+            ]
+        },
+        "publishingStartDate": {
+            "type": "string",
+            "validations": [
+                {
+                    "condition": "lessThan",
+                    "compareWith": "content.offerEndDate",
+                    "failureMessage": "Publishing Start Date should be less than Offer End Date!"
+                }
+            ]
+        },
+        "validated": {
+            "type": "boolean"
+        }
+    },
+    "type": "object",
+    "required": [
+        "name",
+        "publishingStartDate",
+        "publishingEndDate"
+    ]
+}

@@ -32,7 +32,7 @@ public class CustomValidationMessage {
 
     @Override
     public String toString() {
-        return message;
+        return this.path + " : " + message;
     }
 
 }
