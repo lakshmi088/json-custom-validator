@@ -171,6 +171,7 @@ public class JsonValidations {
                 .options(Option.DEFAULT_PATH_LEAF_TO_NULL).build();
         DocumentContext dataCtxt = using(conf).parse(jsonDataString);
         Set<CustomValidationMessage> errors = new HashSet();
+        List<String> valuesList;
         String dataPath, value;
         for (Map.Entry<String, List<JsonCustomValidator>> validators : validators.entrySet()) {
             dataPath = validators.getKey();
@@ -181,7 +182,14 @@ public class JsonValidations {
                 }
             } else {
                 //TODO for array
+                valuesList = dataCtxt.read(dataPath);
+                for (int valInd = 0; valInd < valuesList.size(); valInd++) {
+                    for (JsonCustomValidator validator : validators.getValue()) {
+                        errors.addAll(validator.validate(valuesList.get(valInd), dataCtxt, dataPath.replace("*", String.valueOf(valInd))));
+                    }
+                }
             }
+
         }
         return errors;
     }

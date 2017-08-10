@@ -17,16 +17,13 @@
                     "type": "string"
                 },
                 "linkUrl": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "uri"
                 },
                 "offerEndDate": {
                     "type": "string",
+                    "format": "date-time",
                     "validations": [
-                        {
-                            "condition": "dateFormat",
-                            "format": "yyyy-MM-dd'T'HH:mm:ssXXX",
-                            "failureMessage": "Offer End Date is not in the format 1900-01-01T10:10:10-05:00!"
-                        },
                         {
                             "condition": "greaterThan",
                             "compareWith": "content.offerStartDate",
@@ -36,12 +33,8 @@
                 },
                 "offerStartDate": {
                     "type": "string",
+                    "format": "date-time",
                     "validations": [
-                        {
-                            "condition": "dateFormat",
-                            "format": "yyyy-MM-dd'T'HH:mm:ssXXX",
-                            "failureMessage": "Offer Start Date is not in the format 1900-01-01T10:10:10-05:00!"
-                        },
                         {
                             "condition": "lessThan",
                             "compareWith": "content.offerEndDate",
