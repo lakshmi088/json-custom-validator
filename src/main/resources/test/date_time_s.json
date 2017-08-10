@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "properties": {
+        "currentDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "nextDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "previousDate": {
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}
