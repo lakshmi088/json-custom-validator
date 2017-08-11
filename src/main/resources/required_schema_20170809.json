@@ -110,6 +110,7 @@
         },
         "publishingEndDate": {
             "type": "string",
+            "format": "date-time",
             "validations": [
                 {
                     "condition": "greaterThan",
@@ -125,11 +126,17 @@
         },
         "publishingStartDate": {
             "type": "string",
+            "format": "date-time",
             "validations": [
                 {
                     "condition": "lessThan",
                     "compareWith": "content.offerEndDate",
                     "failureMessage": "Publishing Start Date should be less than Offer End Date!"
+                }, {
+                    "condition": "dateRange",
+                    "fromDate": "2017-06-22T00:00:00-05:00",
+                    "toDate": "2017-06-28T00:00:00-05:00",
+                    "failureMessage": "Date must be between start and end!"
                 }
             ]
         },

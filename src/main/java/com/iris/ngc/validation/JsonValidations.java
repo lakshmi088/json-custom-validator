@@ -5,6 +5,7 @@ import com.iris.ngc.validator.CustomValidationMessage;
 import com.iris.ngc.validator.DateFormatValidator;
 import com.iris.ngc.validator.DateGtValidator;
 import com.iris.ngc.validator.DateLtValidator;
+import com.iris.ngc.validator.DateRangeValidator;
 import com.iris.ngc.validator.DefaultValueValidator;
 import com.iris.ngc.validator.EnumValidator;
 import com.iris.ngc.validator.JsonCustomValidator;
@@ -162,6 +163,8 @@ public class JsonValidations {
                     } else if ("greaterthan".equalsIgnoreCase(condition)) {
                         compareWith = (String) currentSchemaValidator.get("compareWith");
                         customValidator = new DateGtValidator(compareWith, failureMessage);
+                    } else if ("daterange".equalsIgnoreCase(condition)) {
+                        customValidator = new DateRangeValidator((String) currentSchemaValidator.get("fromDate"), (String) currentSchemaValidator.get("toDate"), failureMessage);
                     }
                     customValidators.add(customValidator);
                 }
