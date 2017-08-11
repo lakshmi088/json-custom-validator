@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "properties": {
+        "defaultVal": {
+            "type": "string",
+            "validations": [
+                {
+                    "condition": "defaultValue",
+                    "default": "hello",
+                    "failureMessage": "Default value not matched"
+                }
+            ]
+        }
+    }
+}

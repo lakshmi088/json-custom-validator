@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "id": {
+            "type": "integer"
+        },
+        "required": [
+            "name"
+        ],
+        "dependencies": {
+            "id": ["name"]
+        }
+    }
+}

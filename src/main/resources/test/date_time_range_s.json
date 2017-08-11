@@ -1,0 +1,18 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "properties": {
+        "currentDate": {
+            "type": "string",
+            "format": "date-time",
+            "validations": [
+                {
+                    "condition": "dateRange",
+                    "fromDate": "2017-06-22T00:00:00-05:00",
+                    "toDate": "2017-06-28T00:00:00-05:00",
+                    "failureMessage": "Date must be between start and end!"
+                }
+            ]
+        }
+    }
+}
