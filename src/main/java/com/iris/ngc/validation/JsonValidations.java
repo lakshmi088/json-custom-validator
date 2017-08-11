@@ -1,15 +1,11 @@
 package com.iris.ngc.validation;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iris.ngc.validator.CustomValidationMessage;
-import com.iris.ngc.validator.DateFormatValidator;
 import com.iris.ngc.validator.DateGtValidator;
 import com.iris.ngc.validator.DateLtValidator;
 import com.iris.ngc.validator.DateRangeValidator;
 import com.iris.ngc.validator.DefaultValueValidator;
-import com.iris.ngc.validator.EnumValidator;
 import com.iris.ngc.validator.JsonCustomValidator;
-import com.iris.ngc.validator.NotNullValidator;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
@@ -31,11 +27,8 @@ public class JsonValidations {
     private String validationsProperty;
     private List<String> originalPaths;
     private ReadContext datactx;
-    private Map<String, String> originalPathsRef;
-    private Map<String, Object> validationRequiredPaths;
     private Map<String, String> parentSchemaTypes;
     private Map<String, List<JsonCustomValidator>> validators;
-    private ObjectMapper mapper;
 
     public JsonValidations() {
     }
@@ -47,15 +40,12 @@ public class JsonValidations {
     public JsonValidations(String jsonSchemaString, String validationsProperty) {
         this.jsonSchemaString = jsonSchemaString;
         this.validationsProperty = validationsProperty;
-        this.mapper = new ObjectMapper();
         this.datactx = JsonPath.parse(this.jsonSchemaString);
         this.init();
     }
 
     public final void init() {
         this.originalPaths = new ArrayList();
-        this.validationRequiredPaths = new LinkedHashMap();
-        this.originalPathsRef = new LinkedHashMap();
         this.parentSchemaTypes = new LinkedHashMap();
         this.validators = new LinkedHashMap();
         this.read();
@@ -86,10 +76,8 @@ public class JsonValidations {
             nodePath = parseNodePath(originalPath);
             detailsNode = this.datactx.read(nodePath);
             dataPath = this.parseDataPath(nodePath);
-            this.originalPathsRef.put(originalPath, dataPath);
             this.parentSchemaTypes.put(dataPath, getSchemaParentNodeType(dataPath));
             this.validators.put(dataPath, getSchemaValidators((JSONArray) detailsNode.get(this.validationsProperty)));
-            this.validationRequiredPaths.put(dataPath, detailsNode);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,30 +121,16 @@ public class JsonValidations {
         List<JsonCustomValidator> customValidators = new ArrayList();
         JsonCustomValidator customValidator = null;
         Map currentSchemaValidator;
-        List<String> enumerations;
         String condition, failureMessage, compareWith, format, defaultValue;
-        JSONArray schemaEnumerations;
         for (int validtorInd = 0; validtorInd < schemaValidators.size(); validtorInd++) {
             currentSchemaValidator = (Map) schemaValidators.get(validtorInd);
             if (currentSchemaValidator != null && !currentSchemaValidator.isEmpty()) {
                 condition = (String) currentSchemaValidator.get("condition");
                 if (condition != null && !condition.isEmpty()) {
                     failureMessage = (String) currentSchemaValidator.get("failureMessage");
-                    if ("notnull".equalsIgnoreCase(condition)) {
-                        customValidator = new NotNullValidator(failureMessage);
-                    } else if ("defaultvalue".equalsIgnoreCase(condition)) {
+                    if ("defaultvalue".equalsIgnoreCase(condition)) {
                         defaultValue = (String) currentSchemaValidator.get("default");
                         customValidator = new DefaultValueValidator(defaultValue, failureMessage);
-                    } else if ("enum".equalsIgnoreCase(condition)) {
-                        schemaEnumerations = (JSONArray) currentSchemaValidator.get("enumeration");
-                        enumerations = new ArrayList();
-                        for (int currInd = 0; currInd < schemaEnumerations.size(); currInd++) {
-                            enumerations.add((String) schemaEnumerations.get(currInd));
-                        }
-                        customValidator = new EnumValidator(enumerations, failureMessage);
-                    } else if ("dateformat".equalsIgnoreCase(condition)) {
-                        format = (String) currentSchemaValidator.get("format");
-                        customValidator = new DateFormatValidator(format, failureMessage);
                     } else if ("lessthan".equalsIgnoreCase(condition)) {
                         compareWith = (String) currentSchemaValidator.get("compareWith");
                         customValidator = new DateLtValidator(compareWith, failureMessage);

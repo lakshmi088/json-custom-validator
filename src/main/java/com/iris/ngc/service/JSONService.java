@@ -20,4 +20,17 @@ public class JSONService {
         JsonSchema schema = factory.getSchema(new FileInputStream(new File(path)));
         return schema;
     }
+
+    public JsonNode getJsonNodeFromObject(Object object) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(mapper.writeValueAsString(object));
+        return node;
+    }
+
+    public JsonSchema getJsonSchemaFromObject(Object object) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonSchemaFactory factory = new JsonSchemaFactory();
+        JsonSchema schema = factory.getSchema(mapper.writeValueAsString(object));
+        return schema;
+    }
 }
