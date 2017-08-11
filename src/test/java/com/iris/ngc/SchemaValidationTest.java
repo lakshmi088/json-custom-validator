@@ -118,13 +118,13 @@ public class SchemaValidationTest {
     }
 
     /*Dependency Validations starts*/
-//    @Test
-//    public void dependencyValid() {
-//        Assert.assertEquals(validateComponent.validateDataWithSchema(dependencySchemaFilePath, dependencyValidFilePath).isSuccess(), true);
-//    }
-//
-//    @Test
-//    public void dependencyInValid() {
-//        Assert.assertEquals(validateComponent.validateDataWithSchema(dependencySchemaFilePath, dependencyInValidFilePath).isSuccess(), false);
-//    }
+    @Test
+    public void dependencyValid() {
+        Assert.assertEquals(validateComponent.validateDataWithSchema(dependencySchemaFilePath, dependencyValidFilePath).isSuccess(), true);
+    }
+
+    @Test
+    public void dependencyInValid() {
+        Assert.assertEquals(validateComponent.validateDataWithSchema(dependencySchemaFilePath, dependencyInValidFilePath).isSuccess(), false);
+    }
 }
