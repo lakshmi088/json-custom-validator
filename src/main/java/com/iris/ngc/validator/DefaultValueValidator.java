@@ -10,7 +10,7 @@ public class DefaultValueValidator extends BaseJsonCustomValidator implements Js
     private String message;
     private String defaultValue;
 
-    public DefaultValueValidator(String message, String defaultValue) {
+    public DefaultValueValidator(String defaultValue, String message) {
         this.message = message;
         this.defaultValue = defaultValue;
     }

@@ -5,6 +5,7 @@ import com.iris.ngc.validator.CustomValidationMessage;
 import com.iris.ngc.validator.DateFormatValidator;
 import com.iris.ngc.validator.DateGtValidator;
 import com.iris.ngc.validator.DateLtValidator;
+import com.iris.ngc.validator.DefaultValueValidator;
 import com.iris.ngc.validator.EnumValidator;
 import com.iris.ngc.validator.JsonCustomValidator;
 import com.iris.ngc.validator.NotNullValidator;
@@ -132,7 +133,7 @@ public class JsonValidations {
         JsonCustomValidator customValidator = null;
         Map currentSchemaValidator;
         List<String> enumerations;
-        String condition, failureMessage, compareWith, format;
+        String condition, failureMessage, compareWith, format, defaultValue;
         JSONArray schemaEnumerations;
         for (int validtorInd = 0; validtorInd < schemaValidators.size(); validtorInd++) {
             currentSchemaValidator = (Map) schemaValidators.get(validtorInd);
@@ -142,6 +143,9 @@ public class JsonValidations {
                     failureMessage = (String) currentSchemaValidator.get("failureMessage");
                     if ("notnull".equalsIgnoreCase(condition)) {
                         customValidator = new NotNullValidator(failureMessage);
+                    } else if ("defaultvalue".equalsIgnoreCase(condition)) {
+                        defaultValue = (String) currentSchemaValidator.get("default");
+                        customValidator = new DefaultValueValidator(defaultValue, failureMessage);
                     } else if ("enum".equalsIgnoreCase(condition)) {
                         schemaEnumerations = (JSONArray) currentSchemaValidator.get("enumeration");
                         enumerations = new ArrayList();
@@ -173,11 +177,13 @@ public class JsonValidations {
         Set<CustomValidationMessage> errors = new HashSet();
         List<String> valuesList;
         String dataPath, value;
+        Object valueObj;
         for (Map.Entry<String, List<JsonCustomValidator>> validators : validators.entrySet()) {
             dataPath = validators.getKey();
             if ("object".equalsIgnoreCase(this.parentSchemaTypes.get(dataPath))) {
                 for (JsonCustomValidator validator : validators.getValue()) {
-                    value = dataCtxt.read(dataPath);
+                    valueObj = dataCtxt.read(dataPath);
+                    value = valueObj == null ? null : String.valueOf(valueObj);
                     errors.addAll(validator.validate(value, dataCtxt, dataPath));
                 }
             } else {
