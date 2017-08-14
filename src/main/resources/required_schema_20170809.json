@@ -145,6 +145,10 @@
         },
         "validated": {
             "type": "boolean"
+        },
+        "reportFileName": {
+            "type": "string",
+            "pattern": "^.*\\.[^\\\\]+$"
         }
     },
     "type": "object",

@@ -11,9 +11,10 @@
     "publishingChannelLarge": true,
     "publishingChannelSmall": true,
     "publishingChannelApp": true,
+    "reportFileName": "invoice.pdf",
     "content": {
         "offerStartDate": "2017-06-25T00:00:00-05:00",
-        "redeemingChannel": "online",
+        "redeemingChannel": ["online"],
         "linkText": "SHOP SALES",
         "disclaimerTemplate": "TEST OFFER DATE  @offerStartDate - @offerEndDate  TEST OFFER DATE",
         "linkUrl": "http://www.jcpenney.com/g/sales-deals/N-1b0cnoo?pageType=X2H2&cm_re=CPN-_-0614-_-SALEDAY7-OL_SS",
