@@ -11,7 +11,7 @@
     "publishingChannelLarge": true,
     "publishingChannelSmall": true,
     "publishingChannelApp": true,
-    "reportFileName": "invoice.pdf",
+    "reportFileName": "invoice.doc",
     "content": {
         "offerStartDate": "2017-06-25T00:00:00-05:00",
         "redeemingChannel": ["online"],
