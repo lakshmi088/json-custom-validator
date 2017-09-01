@@ -2,9 +2,13 @@
     "$schema": "http://json-schema.org/draft-04/schema#",
     "definitions": {},
     "properties": {
-        "currentDate": {
+        "enumVal": {
             "type": "string",
-            "format": "date-time"
+            "enum": [
+                "value1",
+                "value2",
+                "value3"
+            ]
         }
     }
 }

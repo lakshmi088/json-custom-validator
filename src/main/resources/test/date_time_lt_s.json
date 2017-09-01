@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {},
+    "properties": {
+        "currentDate": {
+            "type": "string",
+            "format": "date-time",
+            "validations": [
+                {
+                    "condition": "lessThan",
+                    "compareWith": "nextDate",
+                    "failureMessage": "Current date must be less that next date"
+                }
+            ]
+        },
+        "nextDate": {
+            "type": "string",
+            "format": "date-time"
+        }
+    }
+}

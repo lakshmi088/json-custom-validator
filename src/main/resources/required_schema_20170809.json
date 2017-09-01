@@ -70,12 +70,15 @@
                     "type": "string"
                 },
                 "redeemingChannel": {
-                    "type": "string",
-                    "enum": [
-                        "all",
-                        "online",
-                        "instore"
-                    ]
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "all",
+                            "online",
+                            "instore"
+                        ]
+                    }
                 }
             },
             "type": "object",
@@ -142,6 +145,10 @@
         },
         "validated": {
             "type": "boolean"
+        },
+        "reportFileName": {
+            "type": "string",
+            "pattern": "^.*\\.[^\\\\]+$"
         }
     },
     "type": "object",
@@ -151,6 +158,7 @@
         "publishingEndDate"
     ],
     "dependencies": {
+        "name": ["active"],
         "publishingEndDate": ["publishingStartDate"]
     }
 }
